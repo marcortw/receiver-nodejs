@@ -8,15 +8,11 @@ module.exports = {
             console.log('Multicast Client listening on ' + address.address + ":" + address.port);
             client.setBroadcast(true)
             client.setMulticastTTL(128);
-            client.addMembership('230.185.192.108');
-        });
-
-        client.on('message', function (message, remote) {
-            console.log('A: Epic Command Received. Preparing Relay.');
-            console.log('B: From: ' + remote.address + ':' + remote.port +' - ' + message);
+            client.addMembership('239.255.255.242');
         });
 
         client.bind(PORT);
+        return client;
     }
 };
 
