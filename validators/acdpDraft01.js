@@ -1,8 +1,8 @@
 var fs = require('fs');
 var tv4 = require('tv4');
-var logger = require('./lib/logger.js');
+var logger = require('../lib/logger.js');
 
-var demandSchema = JSON.parse(fs.readFileSync('C:/Users/mschnueriger/Documents/Oxford/MSc/Thesis/schema/combined.schema.v4.json', 'utf8'));
+var demandSchema = JSON.parse(fs.readFileSync('C:/Users/mschnueriger/Documents/Oxford/MSc/Thesis/schema/combined.schema.v6.json', 'utf8'));
 
 module.exports = {
     validate: function (demand, callback) {

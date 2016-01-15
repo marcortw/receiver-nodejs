@@ -10,7 +10,8 @@ mcClient.on('message', function (message, remote) {
             if (err) {
                 logger.error(err);
             } else {
-                logger.debug(data)
+                logger.info('received valid message');
+                //logger.debug(data);
             }
         })
 });
