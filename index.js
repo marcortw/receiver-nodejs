@@ -1,17 +1,53 @@
+var logger = require('./lib/logger.js');
 var multicastListener = require('./listeners/multicast.js');
 var unicastListener = require('./listeners/unicast.js');
-var mcClient = multicastListener.startListen();
-var validator = require('./validators/acdpDraft01.js');
-var logger = require('./lib/logger.js');
+var collector = require('./lib/requestCollector');
 
-mcClient.on('message', function (message, remote) {
-    console.log('Received message from: ' + remote.address + ':' + remote.port);
-        validator.validate(message, function(err, data){
-            if (err) {
-                logger.error(err);
-            } else {
-                logger.info('received valid message');
-                //logger.debug(data);
-            }
-        })
+const EventEmitter = require("events");
+const util = require('util');
+
+multicastListener.start();
+unicastListener.start();
+
+function MyEmitter() {
+    EventEmitter.call(this);
+}
+
+util.inherits(MyEmitter, EventEmitter);
+const myEmitter = new MyEmitter();
+
+/**
+ * Catches valid requests from the collector
+ */
+collector.events.on('validrequest', function (options, acdprequest) {
+    logger.debug('a valid event from collector occurred!');
+    myEmitter.emit('validrequest', options, acdprequest);
 });
+
+/**
+ * Catches invalid requests from the collector
+ */
+collector.events.on('invalidrequest', function (options, acdprequest) {
+    logger.debug('an invalid event from collector occurred!');
+    myEmitter.emit('invalidrequest', options, acdprequest);
+});
+
+var userCallback;
+
+function notificationHandler(options, acdprequest, callback) {
+    userCallback
+
+}
+
+function externalResponseHandler(externalResponseFunction) {
+    if (externalResponseFunction.length != 3) {
+        logger.error('Response handler function must be constructed with {options},{acdprequest},callback().')
+    } else {
+        collector.handleAcdpRequest(externalResponseFunction);
+    }
+}
+
+module.exports = {
+    controller: myEmitter,
+    respond: externalResponseHandler
+};
