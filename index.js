@@ -1,6 +1,6 @@
 var logger = require('./lib/logger.js');
-var multicastListener = require('./listeners/multicast.js');
-var unicastListener = require('./listeners/unicast.js');
+var multicastListener = require('./lib/listeners/multicast.js');
+var unicastListener = require('./lib/listeners/unicast.js');
 var collector = require('./lib/requestCollector');
 
 const EventEmitter = require("events");
