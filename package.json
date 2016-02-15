@@ -1,7 +1,7 @@
 {
   "name": "receiver-nodejs",
-  "version": "1.0.0",
-  "description": "0.0.1",
+  "version": "0.0.1",
+  "description": "A draft implementation of a receiver for a protocol called ACDP",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,6 +12,7 @@
     "body-parser": "^1.14.2",
     "debug": "^2.2.0",
     "express": "^4.13.4",
+    "nconf": "^0.8.4",
     "tv4": "^1.2.7"
   }
 }

@@ -1,6 +1,6 @@
 {
   "protocols": {
-    "multicastSenderMode": {
+    "multicastReceiverMode": {
       "config": {
         "dstPort": "42000"
       }

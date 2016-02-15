@@ -36,7 +36,6 @@ var userCallback;
 
 function notificationHandler(options, acdprequest, callback) {
     userCallback
-
 }
 
 function externalResponseHandler(externalResponseFunction) {
