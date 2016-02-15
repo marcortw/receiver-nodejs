@@ -1,8 +1,11 @@
 {
   "protocols": {
-    "multicastReceiverMode": {
-      "config": {
-        "dstPort": "42000"
+    "multicast": {
+      "multicastReceiverMode": {
+        "config": {
+          "dstPort": 42000,
+          "dstAddr": "239.255.255.242"
+        }
       }
     }
   }
